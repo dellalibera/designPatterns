@@ -39,23 +39,23 @@ public class DB {
 		String sql = String.format(
 				"CREATE TABLE IF NOT EXISTS %s (\n"
 				+ "	id text PRIMARY KEY,\n"
-						+ "	pwd text NOT NULL,\n"
-                + " name text NOT NULL,\n"
+				+ "	pwd text NOT NULL,\n"
+				+ " name text NOT NULL,\n"
                 + " address text NOT NULL,\n"
                 + " bestFriend text, \n"
                 + " FOREIGN KEY (address) REFERENCES %s (address), \n"
                 + " FOREIGN KEY (id) REFERENCES %s (id)"
                 + " );", USER_TABLE, ADDRESS_TABLE, USER_TABLE);
         
-        sql += String.format("CREATE TABLE IF NOT EXISTS %s (name text PRIMARY KEY);", ADDRESS_TABLE);
-        
-        try (Connection connection = DriverManager.getConnection(URL);
-                Statement stmt = connection.createStatement()) {
-        	stmt.execute(sql);
-        	System.out.println(String.format("Tables %s and %s has been created", USER_TABLE, ADDRESS_TABLE));
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }		
+		sql += String.format("CREATE TABLE IF NOT EXISTS %s (name text PRIMARY KEY);", ADDRESS_TABLE);
+		
+		try (Connection connection = DriverManager.getConnection(URL);
+		        Statement stmt = connection.createStatement()) {
+			stmt.execute(sql);
+			System.out.println(String.format("Tables %s and %s has been created", USER_TABLE, ADDRESS_TABLE));
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}		
     }
 	
 	public static DB getInstance(){
