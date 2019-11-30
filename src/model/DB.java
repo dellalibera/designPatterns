@@ -12,6 +12,7 @@ import java.sql.Statement;
 // https://www.sqlitetutorial.net/sqlite-foreign-key/
 
 public class DB {
+	
 	private static final DB DATABASE = new DB();
 	public static final String URL = "jdbc:sqlite:database.db";
 	public static final String USER_TABLE = "USERS";
@@ -35,10 +36,10 @@ public class DB {
 	}
 	
 	private  static void createTables() {
-        String sql = String.format(
-        		"CREATE TABLE IF NOT EXISTS %s (\n"
-                + "	id text PRIMARY KEY,\n"
-                + "	pwd text NOT NULL,\n"
+		String sql = String.format(
+				"CREATE TABLE IF NOT EXISTS %s (\n"
+				+ "	id text PRIMARY KEY,\n"
+						+ "	pwd text NOT NULL,\n"
                 + " name text NOT NULL,\n"
                 + " address text NOT NULL,\n"
                 + " bestFriend text, \n"
