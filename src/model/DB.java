@@ -25,14 +25,14 @@ public class DB {
 	
 	private static void createDatabase() {
 		try (Connection connection = DriverManager.getConnection(URL)) {
-            if (connection != null) {
+			if (connection != null) {
                 DatabaseMetaData meta = connection.getMetaData();
                 System.out.println("The driver name is " + meta.getDriverName());
                 System.out.println("A new database has been created.");
             }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+		} catch (SQLException e) {
+		    System.out.println(e.getMessage());
+		}
 	}
 	
 	private  static void createTables() {
@@ -51,13 +51,12 @@ public class DB {
         
         try (Connection connection = DriverManager.getConnection(URL);
                 Statement stmt = connection.createStatement()) {
-            
         	stmt.execute(sql);
-            System.out.println(String.format("Tables %s and %s has been created", USER_TABLE, ADDRESS_TABLE));
+        	System.out.println(String.format("Tables %s and %s has been created", USER_TABLE, ADDRESS_TABLE));
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }		
-	}
+    }
 	
 	public static DB getInstance(){
 	      return DATABASE;
