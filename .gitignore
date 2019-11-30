@@ -1,5 +1,6 @@
 .*
 .*/
+*.class
 build/*
 */META-INF/*
 */WEB-INF/*
