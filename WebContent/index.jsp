@@ -2,11 +2,12 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Index</title>
-</head>
-<body>
-
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>HomePage</title>
+	</head>
+	<body>
+		<h1>Welcome</h1>
+		<a href="jsp/login.jsp">Login</a>
+	</body>
 </html>

@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>ILogin</title>
-</head>
-<body>
-
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>Login</title>
+	</head>
+	<body>
+		<h2>Login</h2>
+	</body>
 </html>
