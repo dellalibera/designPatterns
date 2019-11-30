@@ -41,7 +41,7 @@ public class DB {
 				+ "	id text PRIMARY KEY,\n"
 				+ "	pwd text NOT NULL,\n"
 				+ " name text NOT NULL,\n"
-                + " address text NOT NULL,\n"
+				+ " address text NOT NULL,\n"
                 + " bestFriend text, \n"
                 + " FOREIGN KEY (address) REFERENCES %s (address), \n"
                 + " FOREIGN KEY (id) REFERENCES %s (id)"
@@ -56,7 +56,7 @@ public class DB {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}		
-    }
+	}
 	
 	public static DB getInstance(){
 	      return DATABASE;
