@@ -12,7 +12,6 @@ import java.sql.Statement;
 // https://www.sqlitetutorial.net/sqlite-foreign-key/
 
 public class DB {
-	
 	private static final DB DATABASE = new DB();
 	public static final String URL = "jdbc:sqlite:database.db";
 	public static final String USER_TABLE = "USERS";
