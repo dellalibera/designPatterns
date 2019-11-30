@@ -42,10 +42,10 @@ public class DB {
 				+ "	pwd text NOT NULL,\n"
 				+ " name text NOT NULL,\n"
 				+ " address text NOT NULL,\n"
-                + " bestFriend text, \n"
-                + " FOREIGN KEY (address) REFERENCES %s (address), \n"
-                + " FOREIGN KEY (id) REFERENCES %s (id)"
-                + " );", USER_TABLE, ADDRESS_TABLE, USER_TABLE);
+				+ " bestFriend text, \n"
+				+ " FOREIGN KEY (address) REFERENCES %s (address), \n"
+				+ " FOREIGN KEY (id) REFERENCES %s (id)"
+				+ " );", USER_TABLE, ADDRESS_TABLE, USER_TABLE);
         
 		sql += String.format("CREATE TABLE IF NOT EXISTS %s (name text PRIMARY KEY);", ADDRESS_TABLE);
 		
