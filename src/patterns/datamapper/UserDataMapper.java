@@ -131,21 +131,18 @@ public class UserDataMapper {
 		String sql = String.format("SELECT * FROM %s WHERE ", DB.USER_TABLE);
 		String param = "";
 		
+//		getAllUsers();
 		if((name != null && name != "") || (address != null && address != "") || (bestFriend != null && bestFriend != "")) {
-			System.out.println("---> 1111");
 			try {
 				if(name != null && name != "") {
-					System.out.println("---> 2222");
 
 					sql += "name = ?";
 					param = name;
 				} else if (address != null && address != "") {
-					System.out.println("---> 33333");
 
 					sql += "address = ?";
 					param = address;
 				} else if (bestFriend != null && bestFriend != "") {
-					System.out.println("---> 44444");
 
 					sql += "bestFriend = ?";
 					param = bestFriend;
@@ -155,10 +152,9 @@ public class UserDataMapper {
 			    
 				ResultSet rs = pstmt.executeQuery();
 			    if (rs.next()) {
-					System.out.println("---> 123123");
-
 					User user = new User(rs.getString("id"), rs.getString("pwd"), rs.getString("name"), rs.getString("address"), rs.getString("bestFriend"));
-					users.add(user);
+					System.out.println(user.toString());
+//					users.add(user);
 			    }
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());

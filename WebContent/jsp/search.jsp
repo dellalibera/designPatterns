@@ -19,15 +19,14 @@
 			<input type="submit" name="command" value="Search">
 		</form>
 		<form name="frm" method="post" action="/designPatterns/FrontController">
-			Name: <input type="text" name="name" >
+			Address: <input type="text" name="address" >
 			<input type="submit" name="command" value="Search">
 		</form>
 		<form name="frm" method="post" action="/designPatterns/FrontController">
 			BestFriend: <input type="text" name="bestFriend">
 			<input type="submit" name="command" value="Search">
 		</form>
-		<a href="register.jsp">Register</a><br>
-		Go back to <a href="../index.jsp">homepage</a>.
+		Go back to <a href="index.jsp">homepage</a>.
 		<% 	String message = (String) request.getAttribute("message"); 
 			if(message != null){
 		%>
