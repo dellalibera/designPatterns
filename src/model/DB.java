@@ -63,8 +63,7 @@ public class DB {
 				+ " address text NOT NULL,\n"
 				+ " bestFriend text"
 				+ " );", USER_TABLE);
-//				+ " FOREIGN KEY (address) REFERENCES %s (address) ON UPDATE SET NULL \n ON DELETE SET NULL\n"
-//				+ " );", USER_TABLE, ADDRESS_TABLE);
+
         
 		String sql2 = String.format("CREATE TABLE IF NOT EXISTS %s (address text PRIMARY KEY);", ADDRESS_TABLE);
 		

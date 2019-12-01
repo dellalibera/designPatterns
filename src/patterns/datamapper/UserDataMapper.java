@@ -236,23 +236,4 @@ public class UserDataMapper {
 	}
 	
 	
-	public static void main(String[] args) {
-		User user1 = new User("8", "aaa", "nome", "Addr, dasd, asda1", "1");
-		User user2 = new User("5", "aaa", "nome", "Addr2", "1");
-		User user3 = new User("4", "aaa", "nome", "Addr2", "1");
-//
-////		String id = "123";
-////		String pwd = "aaa";
-////		
-		DB.getInstance();
-////		
-		register(user1);
-//		register(user2);
-//		register(user3);
-//
-////		login(id, pwd);
-////		getAll();
-		getAllAddress();
-		getAllUsers();
-	}
 }
