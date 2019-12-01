@@ -83,6 +83,33 @@ public class UserDataMapper {
 		return rows;
 	}
 	
+	public static int delete(String id) {
+		String sql = String.format("DELETE FROM %s WHERE id=?", DB.USER_TABLE);
+		
+		int rows = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			Class.forName("org.sqlite.JDBC");
+			Connection connection = DriverManager.getConnection(DB.URL);
+			
+			if(userExists(id)) {
+	        	pstmt = connection.prepareStatement(sql);
+	        	pstmt.setString(1, id);
+
+	        	rows = pstmt.executeUpdate();
+
+			} else {
+				System.out.println("User not exists");
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return rows;
+	}
+	
     // https://stackoverflow.com/questions/29640246/how-to-check-if-a-row-exist-in-the-sqlite-table-with-a-condition
 	public static boolean userExists(String id) {
 		String sql = String.format("SELECT (count(*) > 0) as found FROM %s WHERE id=? ;", DB.USER_TABLE);

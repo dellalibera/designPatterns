@@ -17,9 +17,10 @@ public class LoginCommand extends Command{
 		String pwd = this.request.getParameter("pwd");
 		
 		User user = UserDataMapper.login(id, pwd);
-
 		if(user != null) {
+			String address[] = user.getAddress().split(",");
 			this.request.setAttribute("user", user);
+			this.request.setAttribute("address", new Address(address[0], address[1], address[2]));
 			this.forward("userPage");
 		} else {
 			this.request.setAttribute("message", "Errod during authentication");

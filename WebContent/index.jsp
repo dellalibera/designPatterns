@@ -12,4 +12,12 @@
 		<a href="jsp/register.jsp">Register</a><br>
 		<a href="jsp/search.jsp">Search</a>	
 	</body>
+	
+	<% 	String message = (String) request.getAttribute("message"); 
+		if(message != null){
+	%>
+		<p><%= message %></p>
+	<%
+		}
+	%>
 </html>

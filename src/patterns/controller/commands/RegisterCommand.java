@@ -22,9 +22,11 @@ public class RegisterCommand extends Command{
 				);
 		
 		int result = UserDataMapper.register(user);
-
+		String address[] = user.getAddress().split(",");
+		
 		if(result > 0) {
 			this.request.setAttribute("user", user);
+			this.request.setAttribute("address", new Address(address[0], address[1], address[2]));
 			this.forward("userPage");
 		} else {
 			this.request.setAttribute("message", "Error: User not created");

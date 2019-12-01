@@ -27,9 +27,14 @@ String[] addr = address.getFullAddress().split(",");
 			Password: <input type="text" name="pwd" value="<%= user.getPwd() %>"><br>
 			Address: <input type="text" name="street" placeholder="street" value="<%= addr[0] %>"><input type="text" name="postCode" placeholder="postCode" value="<%= addr[1] %>"><input type="text" name="city" placeholder="city" value="<%= addr[2] %>"><br>
 			Best Friend: <input type="text" name="bestFriend" value="<%= user.getBestFriend() %>"><br>
-			<input type="submit" name="command" value="Update">
+			<button type="submit" name="command" value="Update">Update</button>
 		</form>
+		<form name="frm" method="post" action="/designPatterns/FrontController">
+			<input type="hidden" name="id" value="<%= user.getId() %>">
+			<button type="submit" name="command" value="Delete">Delete User</button>
+		</form>
+		
 		<a href="jsp/search.jsp">Search</a><br>
-		<a href="jsp/index.jsp">HomePage</a>
+		<a href="../index.jsp">HomePage</a>
 	</body>
 </html>
