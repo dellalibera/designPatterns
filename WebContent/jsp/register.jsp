@@ -12,7 +12,7 @@
 		<form name="frm" method="post" action="/designPatterns/FrontController">
 			ID: <input type="text" name="id" ><br>
 			Name: <input type="text" name="name"><br>
-			Password: <input type="text" name="pwd"><br>
+			Password: <input type="password" name="pwd"><br>
 			Address: 	<input type="text" name="street" placeholder="street">
 						<input type="text" name="postCode" placeholder="postCode">
 						<input type="text" name="city" placeholder="city"><br>
