@@ -20,4 +20,11 @@
 			<input type="submit" name="command" value="Register">
 		</form>
 	</body>
+	<% 	String message = (String) request.getAttribute("message"); 
+		if(message != null){
+	%>
+		<p style="color:green;">Message: <%= message %></p>
+	<%
+		}
+	%>
 </html>

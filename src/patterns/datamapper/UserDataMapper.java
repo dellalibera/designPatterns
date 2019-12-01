@@ -47,12 +47,25 @@ public class UserDataMapper {
 		ResultSet rs = null;
 		
 		try {
-			Class.forName("org.sqlite.JDBC");
-			Connection connection = DriverManager.getConnection(DB.URL);
+//			Class.forName("org.sqlite.JDBC");
+//			Connection connection = DriverManager.getConnection(DB.URL);
 			
 			// Check if the user already exists
 			if(!userExists(user.getId())) {
-	        	pstmt = connection.prepareStatement(sql_insert_user);
+				
+				System.out.println("User registered");
+    			
+    			if(!addressExists(user.getAddress())) {
+    				pstmt = DB.connection.prepareStatement(sql_insert_addr);
+                	pstmt.setString(1, user.getAddress());
+        			rows = pstmt.executeUpdate();
+        			System.out.println("Address added");
+    			} else {
+    				System.out.println("Address already exists");
+    			}
+    			
+				
+	        	pstmt = DB.connection.prepareStatement(sql_insert_user);
 	        	pstmt.setString(1, user.getId());
 				pstmt.setString(2, user.getPwd());
 				pstmt.setString(3, user.getName());
@@ -62,22 +75,14 @@ public class UserDataMapper {
 				// CHECK the resulting queiry
 				rows = pstmt.executeUpdate();
 
-				if(rows > 0) {
-        			System.out.println("User registered");
-        			
-        			if(!addressExists(user.getAddress())) {
-        				pstmt = connection.prepareStatement(sql_insert_addr);
-	                	pstmt.setString(1, user.getAddress());
-	        			rows = pstmt.executeUpdate();
-	        			System.out.println("Address added");
-        			} else {
-        				System.out.println("Address already exists");
-        			}
+				if(rows == 0) {
+					System.out.println("Rollback");
+        			DB.connection.rollback();
     			}
 			} else {
 				System.out.println("User already exists");
 			}
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 		return rows;
@@ -92,11 +97,11 @@ public class UserDataMapper {
 		ResultSet rs = null;
 		
 		try {
-			Class.forName("org.sqlite.JDBC");
-			Connection connection = DriverManager.getConnection(DB.URL);
+//			Class.forName("org.sqlite.JDBC");
+//			Connection connection = DriverManager.getConnection(DB.URL);
 			
 			if(userExists(id)) {
-	        	pstmt = connection.prepareStatement(sql);
+	        	pstmt = DB.connection.prepareStatement(sql);
 	        	pstmt.setString(1, id);
 
 	        	rows = pstmt.executeUpdate();
@@ -104,7 +109,7 @@ public class UserDataMapper {
 			} else {
 				System.out.println("User not exists");
 			}
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 		return rows;
@@ -157,9 +162,9 @@ public class UserDataMapper {
 		String sql = String.format("SELECT * FROM %s", DB.USER_TABLE);
 		
 		try {
-			Class.forName("org.sqlite.JDBC");
-		    Connection connection = DriverManager.getConnection(DB.URL);
-		    PreparedStatement pstmt = connection.prepareStatement(sql);
+//			Class.forName("org.sqlite.JDBC");
+//		    Connection connection = DriverManager.getConnection(DB.URL);
+		    PreparedStatement pstmt = DB.connection.prepareStatement(sql);
 		    
 			ResultSet rs = pstmt.executeQuery();
 			System.out.println("List of Users:");
@@ -167,8 +172,7 @@ public class UserDataMapper {
 				User user = new User(rs.getString("id"), rs.getString("pwd"), rs.getString("name"), rs.getString("address"), rs.getString("bestFriend"));
 				System.out.println(user.toString());
 			}
-			connection.close();
-		} catch (SQLException | ClassNotFoundException e) {
+		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}	
 		
@@ -179,9 +183,9 @@ public class UserDataMapper {
 		
 		try {
 			
-			Class.forName("org.sqlite.JDBC");
-		    Connection connection = DriverManager.getConnection(DB.URL);
-		    PreparedStatement pstmt = connection.prepareStatement(sql);
+//			Class.forName("org.sqlite.JDBC");
+//		    Connection connection = DriverManager.getConnection(DB.URL);
+		    PreparedStatement pstmt = DB.connection.prepareStatement(sql);
 		    
 			ResultSet rs = pstmt.executeQuery();
 			System.out.println("List of Addresses:");
@@ -189,30 +193,30 @@ public class UserDataMapper {
 				System.out.println(rs.getString("address"));
 			}
 
-		} catch (SQLException | ClassNotFoundException e) {
+		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}	
 		
 	}
 	
 	
-//	public static void main(String[] args) {
-//		User user1 = new User("8", "aaa", "nome", "Addr, dasd, asda1", "aaa");
-////		User user2 = new User("5", "aaa", "nome", "Addr2", "aaa");
-////		User user3 = new User("4", "aaa", "nome", "Addr2", "aaa");
-////
-//////		String id = "123";
-//////		String pwd = "aaa";
-//////		
-////		DB.getInstance();
-//////		
-////		register(user1);
-////		register(user2);
-////		register(user3);
-////
-//////		login(id, pwd);
-//////		getAll();
-//		getAllAddress();
-//		getAllUsers();
-//	}
+	public static void main(String[] args) {
+		User user1 = new User("8", "aaa", "nome", "Addr, dasd, asda1", "1");
+		User user2 = new User("5", "aaa", "nome", "Addr2", "1");
+		User user3 = new User("4", "aaa", "nome", "Addr2", "1");
+//
+////		String id = "123";
+////		String pwd = "aaa";
+////		
+		DB.getInstance();
+////		
+		register(user1);
+//		register(user2);
+//		register(user3);
+//
+////		login(id, pwd);
+////		getAll();
+		getAllAddress();
+		getAllUsers();
+	}
 }

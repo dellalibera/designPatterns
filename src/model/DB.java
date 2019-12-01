@@ -18,58 +18,66 @@ public class DB {
 	public static final String URL = "jdbc:sqlite:database.db";
 	public static final String USER_TABLE = "USERS";
 	public static final String ADDRESS_TABLE = "ADDRESS";
-
-	private DB() {
-		createDatabase();
-		createTables();
-	}
 	
-	private static void createDatabase() {
+	public static Connection connection;
+	
+	private DB() {
 		try {
 			Class.forName("org.sqlite.JDBC");
-			Connection connection = DriverManager.getConnection(URL);
-					
-			if (connection != null) {
-				DatabaseMetaData meta = connection.getMetaData();
-				System.out.println("The driver name is " + meta.getDriverName());
-				System.out.println("A new database has been created.");
-			}
-		} catch (SQLException | ClassNotFoundException e) {
-		    System.out.println(e.getMessage());
+			DB.connection = DriverManager.getConnection(URL);
+			
+			createDatabase();
+			createTables();
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			System.out.println(e.getMessage());
 		}
+		
+		
+		
+	}
+		
+	public static Connection getConnection() {
+		return connection;
+	}
+
+	public static void setConnection(Connection connection) {
+		DB.connection = connection;
+	}
+
+	private static void createDatabase() throws SQLException {
+		if (DB.connection != null) {
+			DatabaseMetaData meta = DB.connection.getMetaData();
+			System.out.println("The driver name is " + meta.getDriverName());
+			System.out.println("A new database has been created.");
+		}
+
 	}
 	
-	private  static void createTables() {
+	private  static void createTables() throws SQLException {
 		String sql = String.format(
 				"CREATE TABLE IF NOT EXISTS %s (\n"
 				+ "	id text PRIMARY KEY,\n"
 				+ "	pwd text NOT NULL,\n"
 				+ " name text NOT NULL,\n"
 				+ " address text NOT NULL,\n"
-				+ " bestFriend text NOT NULL, \n"
-				+ " FOREIGN KEY (address) REFERENCES %s (address) ON UPDATE SET NULL \n ON DELETE SET NULL, \n"
-				+ " FOREIGN KEY (id) REFERENCES %s (id) ON UPDATE SET NULL \n ON DELETE SET NULL"
-				+ " );", USER_TABLE, ADDRESS_TABLE, USER_TABLE);
+				+ " bestFriend text"
+				+ " );", USER_TABLE);
+//				+ " FOREIGN KEY (address) REFERENCES %s (address) ON UPDATE SET NULL \n ON DELETE SET NULL\n"
+//				+ " );", USER_TABLE, ADDRESS_TABLE);
         
 		String sql2 = String.format("CREATE TABLE IF NOT EXISTS %s (address text PRIMARY KEY);", ADDRESS_TABLE);
 		
-		try (Connection connection = DriverManager.getConnection(URL)) {
-			Statement stmt = connection.createStatement();
-			stmt.execute("PRAGMA foreign_keys = ON");
-			stmt.execute(sql);
-			stmt.execute(sql2);
-			
-			System.out.println(String.format("Tables %s and %s has been created", USER_TABLE, ADDRESS_TABLE));
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}		
+		Statement stmt = connection.createStatement();
+		stmt.execute("PRAGMA foreign_keys = ON");
+		stmt.execute(sql);
+		stmt.execute(sql2);
+		
+		System.out.println(String.format("Tables %s and %s has been created", USER_TABLE, ADDRESS_TABLE));
 	}
 	
 	public static DB getInstance(){
 	      return DATABASE;
 	}
-	
-//	public static void main(String[] args) {
-//		getInstance();
-//	}
+
 }

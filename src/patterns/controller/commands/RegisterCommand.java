@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import model.Address;
 import model.User;
 import patterns.datamapper.UserDataMapper;
+import utils.Constant;
 
 
 public class RegisterCommand extends Command{
@@ -29,8 +30,8 @@ public class RegisterCommand extends Command{
 			this.request.setAttribute("address", new Address(address[0], address[1], address[2]));
 			this.forward("userPage");
 		} else {
-			this.request.setAttribute("message", "Error: User not created");
-			this.forward("error");
+			this.request.setAttribute("message", Constant.USER_NOT_CREATED);
+			this.forward("register");
 		}
 	}
 

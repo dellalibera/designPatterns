@@ -35,6 +35,6 @@ String[] addr = address.getFullAddress().split(",");
 		</form>
 		
 		<a href="jsp/search.jsp">Search</a><br>
-		<a href="../index.jsp">HomePage</a>
+		<a href="index.jsp">HomePage</a>
 	</body>
 </html>

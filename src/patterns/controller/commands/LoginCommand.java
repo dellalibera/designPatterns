@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import model.Address;
 import model.User;
 import patterns.datamapper.UserDataMapper;
+import utils.Constant;
 
 public class LoginCommand extends Command{
 
@@ -23,8 +24,8 @@ public class LoginCommand extends Command{
 			this.request.setAttribute("address", new Address(address[0], address[1], address[2]));
 			this.forward("userPage");
 		} else {
-			this.request.setAttribute("message", "Errod during authentication");
-			this.forward("error");
+			this.request.setAttribute("message", Constant.ERROR_AUTH);
+			this.forward("login");
 		}
 		
 	}

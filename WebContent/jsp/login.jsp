@@ -14,4 +14,13 @@
 			<input type="submit" name="command" value="Login">
 		</form>
 	</body>
+	<a href="register.jsp">Register</a>
+	
+	<% 	String message = (String) request.getAttribute("message"); 
+		if(message != null){
+	%>
+		<p style="color:green;">Message: <%= message %></p>
+	<%
+		}
+	%>
 </html>
