@@ -147,10 +147,11 @@ public class UserDataMapper {
 					param = bestFriend;
 				}
 				PreparedStatement pstmt = DB.connection.prepareStatement(sql);
+				System.out.println(sql);
 				pstmt.setString(1, param);
 			    
 				ResultSet rs = pstmt.executeQuery();
-			    if (rs.next()) {
+			    while (rs.next()) {
 					User user = new User(rs.getString("id"), rs.getString("pwd"), rs.getString("name"), rs.getString("address"), rs.getString("bestFriend"));
 					users.add(user);
 			    }
