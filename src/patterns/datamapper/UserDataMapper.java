@@ -131,7 +131,7 @@ public class UserDataMapper {
 		String sql = String.format("SELECT * FROM %s WHERE ", DB.USER_TABLE);
 		String param = "";
 		
-		if(name != null && name != "" && address != null && address != "" && bestFriend != null && bestFriend != "") {
+		if((name != null && name != "") || (address != null && address != "") || (bestFriend != null && bestFriend != "")) {
 			System.out.println("---> 1111");
 			try {
 				if(name != null && name != "") {
