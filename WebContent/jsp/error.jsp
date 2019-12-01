@@ -4,12 +4,10 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>HomePage</title>
+		<title>Error</title>
 	</head>
 	<body>
-		<h1>Welcome</h1>
-		<a href="jsp/login.jsp">Login</a><br>
-		<a href="jsp/register.jsp">Register</a><br>
-		<a href="jsp/search.jsp">Search</a>	
+		<h2><%= request.getAttribute("message") %></h2>
+		Go back to <a href="index.jsp">homepage</a>.
 	</body>
 </html>

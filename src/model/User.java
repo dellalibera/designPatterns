@@ -55,5 +55,10 @@ public class User {
 	public void setBestFriend(String bestFriend) {
 		this.bestFriend = bestFriend;
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("%s, %s, %s, %s", this.id, this.name, this.address, this.bestFriend);
+	}
 
 }

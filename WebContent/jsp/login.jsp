@@ -8,5 +8,10 @@
 	</head>
 	<body>
 		<h2>Login</h2>
+		<form name="frm" method="post" action="/designPatterns/FrontController">
+			ID: <input type="text" name="id" ><br>
+			Password: <input type="password" name="pwd"><br>
+			<input type="submit" name="command" value="Login">
+		</form>
 	</body>
 </html>

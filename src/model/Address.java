@@ -36,8 +36,8 @@ public class Address {
 		this.city = city;
 	}
 	
-	public String getAddress() {
-		return String.format("%s, %s, %s", this.street, this.postCode, this.city);
+	public String getFullAddress() {
+		return String.format("%s, %s, %s", this.street.replace(",", " "), this.postCode.replace(",", " "), this.city.replace(",", " "));
 	}
 
 }
