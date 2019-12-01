@@ -26,7 +26,7 @@
 			BestFriend: <input type="text" name="bestFriend">
 			<input type="submit" name="command" value="Search">
 		</form>
-		Go back to <a href="index.jsp">homepage</a>.
+		Go back to <a href="../index.jsp">homepage</a>.
 		<% 	String message = (String) request.getAttribute("message"); 
 			if(message != null){
 		%>
