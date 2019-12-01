@@ -19,12 +19,14 @@
 			Best Friend: <input type="text" name="bestFriend"><br>
 			<input type="submit" name="command" value="Register">
 		</form>
+		Go back to <a href="../index.jsp">homepage</a>.
+		
+		<% 	String message = (String) request.getAttribute("message"); 
+			if(message != null){
+		%>
+			<p style="color:green;">Message: <%= message %></p>
+		<%
+			}
+		%>
 	</body>
-	<% 	String message = (String) request.getAttribute("message"); 
-		if(message != null){
-	%>
-		<p style="color:green;">Message: <%= message %></p>
-	<%
-		}
-	%>
 </html>

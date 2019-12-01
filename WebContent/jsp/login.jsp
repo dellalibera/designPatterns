@@ -13,14 +13,14 @@
 			Password: <input type="password" name="pwd"><br>
 			<input type="submit" name="command" value="Login">
 		</form>
+		<a href="register.jsp">Register</a><br>
+		Go back to <a href="../index.jsp">homepage</a>.
+		<% 	String message = (String) request.getAttribute("message"); 
+			if(message != null){
+		%>
+			<p style="color:green;">Message: <%= message %></p>
+		<%
+			}
+		%>
 	</body>
-	<a href="register.jsp">Register</a>
-	
-	<% 	String message = (String) request.getAttribute("message"); 
-		if(message != null){
-	%>
-		<p style="color:green;">Message: <%= message %></p>
-	<%
-		}
-	%>
 </html>

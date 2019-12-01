@@ -13,7 +13,6 @@ public class DeleteCommand extends Command{
 	
 	@Override
 	public void process() throws ServletException, IOException {
-		System.out.println("here");
 		int result = UserDataMapper.delete(this.request.getParameter("id"));
 
 		if(result > 0) {
